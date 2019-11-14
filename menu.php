@@ -10,11 +10,11 @@
                 <li><a href="index.php">Index</a></li>
                 <li><a href="usuarios.php">Usuarios</a></li>
                 <li><a>Libros</a></li>
-                <li><a>Autores</a></li>
-                <li><a>Editoriales</a></li>
-                <li><a>Tiendas</a></li>
+                <li><a href="autores.php">Autores</a></li>
+                <li><a href="editorial.php">Editoriales</a></li>
+                <li><a href="tienda.php">Tiendas</a></li>
                 <li><a>TiendasOnline</a></li>
-                <li><a>Reportes</a></li>
+                <li><a href="reportes.php">Reportes</a></li>
             </ul>
         </div>
     </body>

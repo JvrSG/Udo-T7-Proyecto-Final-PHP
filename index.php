@@ -38,7 +38,7 @@
         {
             $_SESSION['login_user'] = $User;
 
-            header("location: libros.php");
+            header("location: menu.php");
         }
         else
             echo "Usuario O Contraseña Invalidos";
