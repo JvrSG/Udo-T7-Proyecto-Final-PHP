@@ -68,7 +68,7 @@
                     $link = $_POST['txtlink'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from tienda_tienda where id = '$id'");
+                    $res = mysqli_query($conexion, "select * from tienda_online where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
@@ -76,7 +76,8 @@
                     }
                     if($id != "")
                     {
-                        $query = "update tienda_online set nombre = '$nombre', link = '$link' where id = '$id'";
+                        $query = "UPDATE 'tienda_online' SET nombre = '$nombre', link = '$link' where id = '$id'";
+                        // UPDATE `tienda_online` SET `id`=[value-1],`nombre`=[value-2],`link`=[value-3] WHERE 1
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -96,7 +97,7 @@
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) values('$maxid','$nombre',$link)");
+                            mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) values($maxid,'$nombre','$link')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  

@@ -105,6 +105,27 @@ select l.Id,
             inner join tienda_online o
             on o.id = l.tienda_online;
 
+create view v_busqueda_libros
+AS
+select l.Id,
+    l.titulo,
+    l.vol,
+    a.autores,
+    e.editorial,
+    t.tienda,
+    o.tienda_online,
+    l.precio
+        from libros l 
+            inner join autores a 
+            on a.id = l.autores
+            inner join editorial e
+            on e.id = l.editorial
+            inner join tienda t 
+            on t.id = l.tienda
+            inner join tienda_online o
+            on o.id = l.tienda_online;
+
+
 
 
 

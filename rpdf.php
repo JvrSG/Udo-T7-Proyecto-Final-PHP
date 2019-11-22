@@ -9,6 +9,9 @@
     $pdf -> AliasNbPages();
     $pdf -> AddPage('L');
 
+    $pdf -> SetFont('Arial', 'B', 12);
+    $pdf -> Cell(100,15,"Reporte Libros",0,2,'C');
+
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(15,6,'ID',1,0,'C',1);
@@ -34,60 +37,46 @@
         $pdf -> Cell(20,6,utf8_decode($row['precio']),1,1,'C');
     }
 
-    
-    require("cerrarconexion.php");
-    $pdf ->Output();
-?>
 
-<?php
+
     //Autores
-    include('Plantilla.php');
-    include('abrirconexion.php');
     $query = "SELECT * FROM autores";
     $res = mysqli_query($conexion, $query);
 
-    $pdf = new PDF();
-    $pdf -> AliasNbPages();
-    $pdf -> AddPage('L');
+    $pdf -> SetFont('Arial', 'B', 12);
+    $pdf -> Cell(100,15,"Reporte Autores",0,2,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(20,6,'ID',1,0,'C',1);
-    $pdf -> Cell(60,6,'AUTOR',1,0,'C',1);
+    $pdf -> Cell(60,6,'AUTOR',1,1,'C',1);
 
     $pdf -> SetFont('Arial','',10);
 
     while ($row = mysqli_fetch_array($res)) 
     {
         $pdf -> Cell(20,6,utf8_decode($row['id']),1,0,'C');
-        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,1,'C');
     }
-    require("cerrarconexion.php");
-    $pdf ->Output();
-?>
 
-<?php
     //Editorial
-    include('Plantilla.php');
-    include('abrirconexion.php');
     $query = "SELECT * FROM editorial";
     $res = mysqli_query($conexion, $query);
 
-    $pdf = new PDF('L');
-    $pdf -> AliasNbPages();
-    $pdf -> AddPage();
+    $pdf -> SetFont('Arial', 'B', 12);
+    $pdf -> Cell(100,15,"Reporte Editorial",0,2,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(20,6,'ID',1,0,'C',1);
-    $pdf -> Cell(60,6,'EDITORIAL',1,0,'C',1);
+    $pdf -> Cell(60,6,'EDITORIAL',1,1,'C',1);
 
     $pdf -> SetFont('Arial','',10);
 
     while ($row = mysqli_fetch_array($res)) 
     {
         $pdf -> Cell(20,6,utf8_decode($row['id']),1,0,'C');
-        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,1,'C');
     }
     require("cerrarconexion.php");
     $pdf ->Output();

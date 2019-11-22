@@ -7,7 +7,7 @@
         {
             $this -> SetFont('Arial', 'B', 15);
             $this -> Cell(30);
-            $this -> Cell(120,10,"Reportes",0,0,'C');
+            $this -> Cell(220,10,"Reportes",0,0,'C');
             $this -> Ln(20);
         }
 

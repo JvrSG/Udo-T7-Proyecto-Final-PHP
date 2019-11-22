@@ -45,7 +45,7 @@
     </head>
     <body>
         <center>
-            <h1>Lbros</h1>
+            <h1>Libros</h1>
         </center>
             <form method="POST" action="libros.php">
                 <center>
@@ -105,7 +105,7 @@
                     $precio = $_POST['txtPrecio'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from liros where id = '$id'");
+                    $res = mysqli_query($conexion, "select * from libros where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
