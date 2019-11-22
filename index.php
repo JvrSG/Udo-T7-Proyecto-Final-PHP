@@ -29,7 +29,7 @@
         include("abrirconexion.php");
         session_start();
 
-        $sql = "SELECT id FROM usuario WHERE usuario = '$User' and password = '$Password'";
+        $sql = "SELECT id FROM usuarios WHERE usuario = '$User' and password = '$Password'";
         $result = mysqli_query($conexion,$sql);
         $row = mysqli_fetch_array($result);
         $count = mysqli_num_rows($result);
