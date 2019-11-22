@@ -89,7 +89,7 @@ create view v_busqueda_libros
 AS
 select l.Id,
     l.titulo,
-    l.vol
+    l.vol,
     l.autores,
     l.editorial,
     l.tienda,
