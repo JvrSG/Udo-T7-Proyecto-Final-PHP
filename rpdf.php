@@ -7,85 +7,73 @@
 
     $pdf = new PDF();
     $pdf -> AliasNbPages();
-    $pdf -> AddPage();
+    $pdf -> AddPage('L');
+    $pdf -> SetFont('Arial','B',12);
+    $pdf -> Cell(120,15,"Reporte Libros",0,1,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(20,6,'ID',1,0,'C',1);
-    $pdf -> Cell(60,6,'TITULO',1,0,'C',1);
-    $pdf -> Cell(60,6,'VOLUMEN',1,1,'C',1);
-    $pdf -> Cell(60,6,'AUTOR',1,2,'C',1);
-    $pdf -> Cell(60,6,'EDITORIALES',1,3,'C',1);
-    $pdf -> Cell(60,6,'TIENDAS',1,4,'C',1);
-    $pdf -> Cell(60,6,'TIENDAS ONLINE',1,5,'C',1);
-    $pdf -> Cell(60,6,'PRECIO',1,6,'C',1);
+    $pdf -> Cell(40,6,'TITULO',1,0,'C',1);
+    $pdf -> Cell(40,6,'VOLUMEN',1,0,'C',1);
+    $pdf -> Cell(20,6,'AUTOR',1,0,'C',1);
+    $pdf -> Cell(40,6,'EDITORIALES',1,0,'C',1);
+    $pdf -> Cell(20,6,'TIENDAS',1,0,'C',1);
+    $pdf -> Cell(40,6,'TIENDAS ONLINE',1,0,'C',1);
+    $pdf -> Cell(20,6,'PRECIO',1,1,'C',1);
 
     $pdf -> SetFont('Arial','',10);
 
     while ($row = mysqli_fetch_array($res)) 
     {
-        $pdf -> Cell(20,6,utf8_decode($row['id']),1,0,'C');
-        $pdf -> Cell(60,6,$row['titulo'],1,0,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['volumen']),1,1,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['autor']),1,1,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['editoriales']),1,1,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['tiendas']),1,1,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['tiendasoline']),1,1,'C');
-        $pdf -> Cell(60,6,utf8_decode($row['precio']),1,1,'C');
+        $pdf -> Cell(20,6,utf8_decode($row['Id']),1,0,'C');
+        $pdf -> Cell(40,6,$row['titulo'],1,0,'C');
+        $pdf -> Cell(40,6,utf8_decode($row['volumen']),1,0,'C');
+        $pdf -> Cell(20,6,utf8_decode($row['autor']),1,0,'C');
+        $pdf -> Cell(40,6,utf8_decode($row['editoriales']),1,0,'C');
+        $pdf -> Cell(20,6,utf8_decode($row['tiendas']),1,0,'C');
+        $pdf -> Cell(40,6,utf8_decode($row['tiendasonline']),1,0,'C');
+        $pdf -> Cell(20,6,utf8_decode($row['precio']),1,1,'C');
     }
-    require("cerrarconexion.php");
-    $pdf ->Output();
-?>
 
-<?php
     //Autores
-    include('Plantilla.php');
-    include('abrirconexion.php');
     $query = "SELECT * FROM autores";
     $res = mysqli_query($conexion, $query);
 
-    $pdf = new PDF();
-    $pdf -> AliasNbPages();
-    $pdf -> AddPage();
+    $pdf -> SetFont('Arial','B',12);
+    $pdf -> Cell(120,15,"Reporte Libros",0,2,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(20,6,'ID',1,0,'C',1);
-    $pdf -> Cell(60,6,'AUTOR',1,0,'C',1);
+    $pdf -> Cell(60,6,'AUTOR',1,1,'C',1);
 
     $pdf -> SetFont('Arial','',10);
 
     while ($row = mysqli_fetch_array($res)) 
     {
         $pdf -> Cell(20,6,utf8_decode($row['idautor']),1,0,'C');
-        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,1,'C');
     }
-    require("cerrarconexion.php");
-    $pdf ->Output();
-?>
-
-<?php
-    //Editorial
-    include('Plantilla.php');
-    include('abrirconexion.php');
+    
+    //Editoriales
     $query = "SELECT * FROM editorial";
     $res = mysqli_query($conexion, $query);
 
-    $pdf = new PDF();
-    $pdf -> AliasNbPages();
-    $pdf -> AddPage();
+    $pdf -> SetFont('Arial','B',12);
+    $pdf -> Cell(120,15,"Reporte Editoriales",0,3,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
     $pdf -> Cell(20,6,'ID',1,0,'C',1);
-    $pdf -> Cell(60,6,'EDITORIAL',1,0,'C',1);
+    $pdf -> Cell(60,6,'EDITORIAL',1,1,'C',1);
 
     $pdf -> SetFont('Arial','',10);
 
     while ($row = mysqli_fetch_array($res)) 
     {
         $pdf -> Cell(20,6,utf8_decode($row['ideditorial']),1,0,'C');
-        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,1,'C');
     }
     require("cerrarconexion.php");
     $pdf ->Output();

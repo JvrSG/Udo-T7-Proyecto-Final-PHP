@@ -1,7 +1,7 @@
 <html>
     <?php
         include("abrirconexion.php");
-        $id = isset($_POST['id']); //
+        $id = isset($_POST['idtonline']); //
         $nombre = isset($_POST['nombre']); //
         $link = isset($_POST['link']);
 
@@ -19,8 +19,8 @@
                 $res = mysqli_query($conexion,"select * tienda_online where id = '$id'");
                 while($consulta = mysqli_fetch_array($res)) //
                 {
-                    $id = $consulta['id'];
-                    $nombre = $consulta['Nombre'];
+                    $id = $consulta['idtonline'];
+                    $nombre = $consulta['nombre'];
                     $link = $consulta['link']; 
                     $existe++;
                 }
@@ -72,7 +72,7 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $id = $consulta['id'];
+                        $id = $consulta['idtonline'];
                     }
                     if($id != "")
                     {
@@ -113,7 +113,7 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $id = $consulta['id'];
+                        $id = $consulta['idtonline'];
                     }
                     if($id != "")
                     {

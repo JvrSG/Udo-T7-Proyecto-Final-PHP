@@ -1,10 +1,11 @@
+<button><a href="rpdf.php">Imprimir PDF</a></button>
+
 <?php
     //libros
     include("abrirconexion.php");
     $consulta = "Select * From v_busqueda_libros";
     $resultado = mysqli_query($conexion, $consulta);
 
-    echo "<h2>libros</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -16,11 +17,11 @@
     echo "<th>TIENDAS ONLINE</th>";
     echo "<th>PRECIO</th>";
     echo "</tr>";
-
+    
     while ($columna = mysqli_fetch_array($resultado))
     {
         echo "<tr>";
-        echo "<td>" . $columna['id'] . "</td>";
+        echo "<td>" . $columna['Id'] . "</td>";
         echo "<td>" . $columna['titulo'] . "</td>";
         echo "<td>" . $columna['volumen'] . "</td>";
         echo "<td>" . $columna['autor'] . "</td>";
@@ -30,7 +31,8 @@
         echo "<td>" . $columna['precio'] . "</td>";
         echo "</tr>";
     }
-
+    
+    echo "<h2>Libros</h2>";
     include("cerrarconexion.php");
 ?>
 
@@ -40,13 +42,12 @@
     $consulta = "Select * From autores";
     $resultado = mysqli_query($conexion, $consulta);
 
-    echo "<h2>Autores</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
     echo "<th>NOMBRE</th>";
     echo "</tr>";
-
+    
     while ($columna = mysqli_fetch_array($resultado))
     {
         echo "<tr>";
@@ -54,7 +55,8 @@
         echo "<td>" . $columna['nombre'] . "</td>";
         echo "</tr>";
     }
-
+    
+    echo "<h2>Autores</h2>";
     include("cerrarconexion.php");
 ?>
 
@@ -64,13 +66,12 @@
     $consulta = "Select * From editorial";
     $resultado = mysqli_query($conexion, $consulta);
 
-    echo "<h2>Editorial</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
     echo "<th>NOMBRE</th>";
     echo "</tr>";
-
+    
     while ($columna = mysqli_fetch_array($resultado))
     {
         echo "<tr>";
@@ -78,7 +79,7 @@
         echo "<td>" . $columna['nombre'] . "</td>";
         echo "</tr>";
     }
-
+    
+    echo "<h2>Editorial</h2>";
     include("cerrarconexion.php");
 ?>
-<button><a href="rpdf.php">Imprimir PDF</a></button>

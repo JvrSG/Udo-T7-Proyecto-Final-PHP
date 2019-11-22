@@ -3,11 +3,11 @@
         include("abrirconexion.php");
         $id = isset($_POST['id']);
         $titulo = isset($_POST['titulo']);
-        $vol = isset($_POST['vol']);
+        $vol = isset($_POST['volumen']);
         $autores = isset($_POST['autores']);
         $editorial = isset($_POST['editorial']);
-        $tienda = isset($_POST['tienda']);
-        $tiendaOnline = isset($_POST['tienda_online']);
+        $tienda = isset($_POST['tiendas']);
+        $tiendaOnline = isset($_POST['tiendasonline']);
         $precio = isset($_POST['precio']);
 
         if(isset($_POST['btnBuscar']))
@@ -26,11 +26,11 @@
                 {                    
                     $id = $consulta['id'];
                     $titulo = $consulta['titulo'];
-                    $vol = $consulta['vol'];
-                    $autores = $consulta['autores'];
+                    $vol = $consulta['volumen'];
+                    $autores = $consulta['autor'];
                     $editorial = $consulta['editorial'];
-                    $tienda = $consulta['tienda'];
-                    $tiendaOnline = $consulta['tienda_online'];
+                    $tienda = $consulta['tiendas'];
+                    $tiendaOnline = $consulta['tiendaonline'];
                     $precio = $consulta['precio'];
                     $existe++;
                 }
@@ -113,7 +113,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', vol = '$vol', autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio', where id = '$id'";
+                        $query = "update libros set titulo = '$titulo', volumen = '$vol', autores = '$autores', editorial = '$editorial', tiendas = '$tienda', tiendasonline = '$tiendaOnline', precio = '$precio', where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -133,10 +133,10 @@
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,vol,autores,editorial,tienda,tienda_online,precio) values('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
+                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,volumen,autores,editorial,tiendas,tiendasonline,precio) values('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
-                    }  // `id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
+                    }  // `id`, `titulo`, `volumen`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
                 }
 
                 if(isset($_POST['btnActualizar']))
@@ -159,7 +159,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', vol = '$vol',autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio' where id = '$id'";
+                        $query = "update libros set titulo = '$titulo', volumen = '$vol',autores = '$autores', editorial = '$editorial', tiendas = ''$tienda, tiendasonline = '$tiendaOnline', precio = '$precio' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
