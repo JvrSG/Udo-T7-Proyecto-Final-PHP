@@ -53,7 +53,35 @@ create table autores(
 
 -- LOS "INSERT" DE PRUEBA
 
+
+-- usuario
 INSERT INTO `usuarios`(`id`, `usuario`, `password`, `nivel`) VALUES (1,'base','123',1);
+
+-- libros
+INSERT INTO `libros` (`id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`) VALUES ('1', 'The Ancient Magus Bride', '1', '4', '1', '1', '1', '109'),('2', 'The Seven Deadly Sins', '5', '2', '1', '3', '3', '85'),('3', 'Kamisama Darling', '3', '6', '2', '2', '2', '110')
+
+-- autores
+INSERT INTO `autores` (`id`, `nombre`) VALUES
+(1, 'Kiera Cass'),
+(2, 'Nakaba Suzuki'),
+(3, 'Eiichiro Oda'),
+(4, 'Kore Yamazaki'),
+(5, 'CLAMP'),
+(6, 'Kyoko Aiba');
+
+
+-- editorial
+INSERT INTO `editorial`(`id`, `nombre`) VALUES (1,'Panini Manga'),(2,'Kamite Manga');
+
+-- tienda
+INSERT INTO `tienda` (`id`, `nombre`, `direccion`) VALUES
+(1, 'Dokkan', 'Francisco gonzalez bocanegra esq. con educación, MZ Plaza las Glorias, local #7, Col. Las Huertas. (1,15 km) 81075 Guasave'),
+(2, 'Junopi Shop', 'Calle General Ángel Flores 317 (136,88 km) 80000 Culiacan'),
+(3, 'Mexicómics', 'FrikiPlaza,Local #12 en el Sótano, Eje Central Lazaro Cardenas # 9, Col. Centro y Friki-Plaza Republica de Uruguay #17 local 152 primer piso, Col. Centro. (1.176,17 km) 06050 Ciudad de México');
+
+-- tienda online
+INSERT INTO `tienda_online`(`id`, `nombre`, `link`) VALUES (1,'panini comics','http://comics.panini.com.mx/store/pub_mex_es_magazines/manga.html'),(2,'editorial kamite','https://kamite.com.mx/13-mangas'),(3,'Mangrabreria','https://www.mangraberia.com');
+
 
 -- IMPLEMENTACION DE LAS VISTAS
 
@@ -61,6 +89,7 @@ create view v_busqueda_libros
 AS
 select l.Id,
     l.titulo,
+    l.vol
     l.autores,
     l.editorial,
     l.tienda,
@@ -78,17 +107,20 @@ select l.Id,
 
 
 
+
+
 -- MISCELANEO
 
 -- mas campos en libros para sus relaciones
-USE directorio;
-DROP TABLE libros;
-create table libros(
-    id int NOT NULL,
-    titulo varchar(100),
-    vol int,
-    autores int,
-    editorial int,
-    tienda int,
-    tienda_online int,
-    precio double) ENGINE=INNODB;
+
+-- USE directorio;
+-- DROP TABLE libros;
+-- create table libros(
+--     id int NOT NULL,
+--     titulo varchar(100),
+--     vol int,
+--     autores int,
+--     editorial int,
+--     tienda int,
+--     tienda_online int,
+--     precio double) ENGINE=INNODB;
