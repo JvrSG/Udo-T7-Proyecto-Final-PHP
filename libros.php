@@ -28,7 +28,7 @@
                     $titulo = $consulta['titulo'];
                     $vol = $consulta['vol'];
                     $autores = $consulta['autores'];
-                    $editorial = $consulta($_POST['editorial'];
+                    $editorial = $consulta['editorial'];
                     $tienda = $consulta['tienda'];
                     $tiendaOnline = $consulta['tienda_online'];
                     $precio = $consulta['precio'];
