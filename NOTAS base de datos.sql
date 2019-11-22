@@ -49,6 +49,7 @@ create table autores(
 
 -- LOS "INSERT" DE PRUEBA
 
+INSERT INTO `usuarios`(`id`, `usuario`, `password`, `nivel`) VALUES (1,'base','123',1);
 
 -- IMPLEMENTACION DE LAS VISTAS
 

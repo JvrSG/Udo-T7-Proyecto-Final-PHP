@@ -8,8 +8,8 @@
     <h2>Menu de Inicio</h2>
         <div id="menu">
             <ul>
-                <li><a href="index.php">Index</a></li>
-                <li><a href="usuarios.php">Usuarios</a></li>
+                <li><a href="index.php">Usuarios</a></li>
+                <li><a href="logout.php">Logout</a></li>
                 <li><a>Libros</a></li>
                 <li><a href="autores.php">Autores</a></li>
                 <li><a href="editorial.php">Editoriales</a></li>
