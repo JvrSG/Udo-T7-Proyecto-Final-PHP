@@ -1,7 +1,8 @@
 <?php
+    //Libros
     include('Plantilla.php');
     include('abrirconexion.php');
-    $query = "SELECT * FROM vbusquedalibros";
+    $query = "SELECT * FROM v_busqueda_libros";
     $res = mysqli_query($conexion, $query);
 
     $pdf = new PDF();
@@ -31,6 +32,60 @@
         $pdf -> Cell(60,6,utf8_decode($row['tiendas']),1,1,'C');
         $pdf -> Cell(60,6,utf8_decode($row['tiendasoline']),1,1,'C');
         $pdf -> Cell(60,6,utf8_decode($row['precio']),1,1,'C');
+    }
+    require("cerrarconexion.php");
+    $pdf ->Output();
+?>
+
+<?php
+    //Autores
+    include('Plantilla.php');
+    include('abrirconexion.php');
+    $query = "SELECT * FROM autores";
+    $res = mysqli_query($conexion, $query);
+
+    $pdf = new PDF();
+    $pdf -> AliasNbPages();
+    $pdf -> AddPage();
+
+    $pdf -> SetFillColor(232,232,232);
+    $pdf -> SetFont('Arial','B',12);
+    $pdf -> Cell(20,6,'ID',1,0,'C',1);
+    $pdf -> Cell(60,6,'AUTOR',1,0,'C',1);
+
+    $pdf -> SetFont('Arial','',10);
+
+    while ($row = mysqli_fetch_array($res)) 
+    {
+        $pdf -> Cell(20,6,utf8_decode($row['idautor']),1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
+    }
+    require("cerrarconexion.php");
+    $pdf ->Output();
+?>
+
+<?php
+    //Editorial
+    include('Plantilla.php');
+    include('abrirconexion.php');
+    $query = "SELECT * FROM editorial";
+    $res = mysqli_query($conexion, $query);
+
+    $pdf = new PDF();
+    $pdf -> AliasNbPages();
+    $pdf -> AddPage();
+
+    $pdf -> SetFillColor(232,232,232);
+    $pdf -> SetFont('Arial','B',12);
+    $pdf -> Cell(20,6,'ID',1,0,'C',1);
+    $pdf -> Cell(60,6,'EDITORIAL',1,0,'C',1);
+
+    $pdf -> SetFont('Arial','',10);
+
+    while ($row = mysqli_fetch_array($res)) 
+    {
+        $pdf -> Cell(20,6,utf8_decode($row['ideditorial']),1,0,'C');
+        $pdf -> Cell(60,6,$row['nombre'],1,0,'C');
     }
     require("cerrarconexion.php");
     $pdf ->Output();

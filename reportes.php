@@ -1,7 +1,7 @@
 <?php
     //libros
     include("abrirconexion.php");
-    $consulta = "Select * From vbusquedalibros";
+    $consulta = "Select * From v_busqueda_libros";
     $resultado = mysqli_query($conexion, $consulta);
 
     echo "<h2>libros</h2>";
@@ -37,7 +37,7 @@
 <?php
     //Autores
     include("abrirconexion.php");
-    $consulta = "Select * From vbusquedalibros";
+    $consulta = "Select * From autores";
     $resultado = mysqli_query($conexion, $consulta);
 
     echo "<h2>Autores</h2>";
@@ -50,7 +50,7 @@
     while ($columna = mysqli_fetch_array($resultado))
     {
         echo "<tr>";
-        echo "<td>" . $columna['id'] . "</td>";
+        echo "<td>" . $columna['idautor'] . "</td>";
         echo "<td>" . $columna['nombre'] . "</td>";
         echo "</tr>";
     }
@@ -61,7 +61,7 @@
 <?php
     //Editorial
     include("abrirconexion.php");
-    $consulta = "Select * From vbusquedalibros";
+    $consulta = "Select * From editorial";
     $resultado = mysqli_query($conexion, $consulta);
 
     echo "<h2>Editorial</h2>";
@@ -74,7 +74,7 @@
     while ($columna = mysqli_fetch_array($resultado))
     {
         echo "<tr>";
-        echo "<td>" . $columna['id'] . "</td>";
+        echo "<td>" . $columna['ideditorial'] . "</td>";
         echo "<td>" . $columna['nombre'] . "</td>";
         echo "</tr>";
     }
