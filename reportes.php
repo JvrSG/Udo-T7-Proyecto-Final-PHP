@@ -4,6 +4,7 @@
     $consulta = "Select * From vbusquedalibros";
     $resultado = mysqli_query($conexion, $consulta);
 
+    echo "<h2>libros</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -39,6 +40,7 @@
     $consulta = "Select * From vbusquedalibros";
     $resultado = mysqli_query($conexion, $consulta);
 
+    echo "<h2>Autores</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -62,6 +64,7 @@
     $consulta = "Select * From vbusquedalibros";
     $resultado = mysqli_query($conexion, $consulta);
 
+    echo "<h2>Editorial</h2>";
     echo "<table border = '2'>";
     echo "<tr>";
     echo "<th>ID</th>";
