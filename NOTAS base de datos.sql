@@ -38,6 +38,10 @@ create table libros(
     id int NOT NULL,
     titulo varchar(100),
     vol int,
+    autores int,
+    editorial int,
+    tienda int,
+    tienda_online int,
     precio double) ENGINE=INNODB;
 
 create table autores(
@@ -53,5 +57,38 @@ INSERT INTO `usuarios`(`id`, `usuario`, `password`, `nivel`) VALUES (1,'base','1
 
 -- IMPLEMENTACION DE LAS VISTAS
 
+create view v_busqueda_libros
+AS
+select l.Id,
+    l.titulo,
+    l.autores,
+    l.editorial,
+    l.tienda,
+    l.tienda_online,
+    l.precio
+        from libros l 
+            inner join autores a 
+            on a.id = l.autores
+            inner join editorial e
+            on e.id = l.editorial
+            inner join tienda t 
+            on t.id = l.tienda
+            inner join tienda_online o
+            on o.id = l.tienda_online;
+
+
 
 -- MISCELANEO
+
+-- mas campos en libros para sus relaciones
+USE directorio;
+DROP TABLE libros;
+create table libros(
+    id int NOT NULL,
+    titulo varchar(100),
+    vol int,
+    autores int,
+    editorial int,
+    tienda int,
+    tienda_online int,
+    precio double) ENGINE=INNODB;
