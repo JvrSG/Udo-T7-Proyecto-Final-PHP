@@ -2,8 +2,8 @@
     <?php
         include("abrirconexion.php");
         $idtienda = isset($_POST['idtienda']);
-        $nombre = isset($_POST['Nombre']);
-        $direccion = isset($_POST['Direccion']);
+        $nombre = isset($_POST['nombre_tienda']);
+        $direccion = isset($_POST['direccion']);
 
         if(isset($_POST['btnBuscar']))
         {
@@ -16,12 +16,12 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where idtienda = '$idtienda'");
+                $res = mysqli_query($conexion,"select * from tienda where idtienda = '$idtienda'");
                 while($consulta = mysqli_fetch_array($res))
                 {
                     $idtienda = $consulta['idtienda'];
-                    $nombre = $consulta['Nombre'];
-                    $direccion = $consulta['Direccion'];
+                    $nombre = $consulta['nombre_tienda'];
+                    $direccion = $consulta['direccion'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -72,11 +72,11 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idtienda = $consulta['id'];
+                        $idtienda = $consulta['idtienda'];
                     }
                     if($idtienda != "")
                     {
-                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
+                        $query = "update tienda set nombre_tienda = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -89,14 +89,14 @@
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from tienda");
+                            $res = mysqli_query($conexion,"select max(idtienda) from tienda");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO tienda(idtienda,nombre,direccion) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO tienda(idtienda,nombre_tienda,direccion) values('$maxid','$nombre','$direccion')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -113,11 +113,11 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idtienda = $consulta['id'];
+                        $idtienda = $consulta['idtienda'];
                     }
                     if($idtienda != "")
                     {
-                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
+                        $query = "update tienda set nombre_tienda = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }

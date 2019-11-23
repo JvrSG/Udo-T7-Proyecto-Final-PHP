@@ -58,16 +58,18 @@ create table autores(
 INSERT INTO `usuarios`(`id`, `usuario`, `password`, `nivel`) VALUES (1,'base','123',1);
 
 -- libros
-INSERT INTO `libros` (`id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`) VALUES ('1', 'The Ancient Magus Bride', '1', '4', '1', '1', '1', '109'),('2', 'The Seven Deadly Sins', '5', '2', '1', '3', '3', '85'),('3', 'Kamisama Darling', '3', '6', '2', '2', '2', '110')
+INSERT INTO `libros` (`id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`) VALUES 
+('1', 'The Ancient Magus Bride', '1', '3', '1', '1', '1', '109'),
+('2', 'The Seven Deadly Sins', '5', '1', '1', '3', '3', '85'),
+('3', 'Kamisama Darling', '3', '5', '2', '2', '2', '110');
 
 -- autores
 INSERT INTO `autores` (`id`, `nombre`) VALUES
-(1, 'Kiera Cass'),
-(2, 'Nakaba Suzuki'),
-(3, 'Eiichiro Oda'),
-(4, 'Kore Yamazaki'),
-(5, 'CLAMP'),
-(6, 'Kyoko Aiba');
+(1, 'Nakaba Suzuki'),
+(2, 'Eiichiro Oda'),
+(3, 'Kore Yamazaki'),
+(4, 'CLAMP'),
+(5, 'Kyoko Aiba');
 
 
 -- editorial

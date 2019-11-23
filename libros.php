@@ -21,16 +21,16 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from v_busqueda_libros where id = '$id'");
+                $res = mysqli_query($conexion,"select * from v_busqueda_libros where Id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {                    
-                    $id = $consulta['id'];
+                    $id = $consulta['Id'];
                     $titulo = $consulta['titulo'];
                     $vol = $consulta['volumen'];
                     $autores = $consulta['autor'];
-                    $editorial = $consulta['editorial'];
+                    $editorial = $consulta['editoriales'];
                     $tienda = $consulta['tiendas'];
-                    $tiendaOnline = $consulta['tiendaonline'];
+                    $tiendaOnline = $consulta['tiendasonline'];
                     $precio = $consulta['precio'];
                     $existe++;
                 }
@@ -45,7 +45,7 @@
     </head>
     <body>
         <center>
-            <h1>Lbros</h1>
+            <h1>Libros</h1>
         </center>
             <form method="POST" action="libros.php">
                 <center>
@@ -105,15 +105,15 @@
                     $precio = $_POST['txtPrecio'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from liros where id = '$id'");
+                    $res = mysqli_query($conexion, "select * from libros where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
                         $id = $consulta['id'];
                     }
-                    if($id != "")
+                    if($id != " ")
                     {
-                        $query = "update libros set titulo = '$titulo', volumen = '$vol', autores = '$autores', editorial = '$editorial', tiendas = '$tienda', tiendasonline = '$tiendaOnline', precio = '$precio', where id = '$id'";
+                        $query = "update libros set titulo = '$titulo', volumen = '$vol', autores = '$autores', editoriales = '$editorial', tiendas = '$tienda', tiendasonline = '$tiendaOnline', precio = '$precio', where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -133,7 +133,7 @@
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,volumen,autores,editorial,tiendas,tiendasonline,precio) values('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
+                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,volumen,autores,editoriales,tiendas,tiendasonline,precio) values('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  // `id`, `titulo`, `volumen`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
@@ -159,7 +159,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', volumen = '$vol',autores = '$autores', editorial = '$editorial', tiendas = ''$tienda, tiendasonline = '$tiendaOnline', precio = '$precio' where id = '$id'";
+                        $query = "update libros set titulo = '$titulo', volumen = '$vol',autores = '$autores', editoriales = '$editorial', tiendas = ''$tienda, tiendasonline = '$tiendaOnline', precio = '$precio' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }

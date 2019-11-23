@@ -9,7 +9,7 @@
     $pdf -> AliasNbPages();
     $pdf -> AddPage('L');
     $pdf -> SetFont('Arial','B',12);
-    $pdf -> Cell(120,15,"Reporte Libros",0,1,'C');
+    $pdf -> Cell(100,15,"Reporte Libros",0,1,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
@@ -41,7 +41,7 @@
     $res = mysqli_query($conexion, $query);
 
     $pdf -> SetFont('Arial','B',12);
-    $pdf -> Cell(120,15,"Reporte Libros",0,2,'C');
+    $pdf -> Cell(100,15,"Reporte Libros",0,2,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);
@@ -61,7 +61,7 @@
     $res = mysqli_query($conexion, $query);
 
     $pdf -> SetFont('Arial','B',12);
-    $pdf -> Cell(120,15,"Reporte Editoriales",0,3,'C');
+    $pdf -> Cell(100,15,"Reporte Editoriales",0,3,'C');
 
     $pdf -> SetFillColor(232,232,232);
     $pdf -> SetFont('Arial','B',12);

@@ -2,24 +2,24 @@
     <?php
         include("abrirconexion.php");
         $ideditorial = isset($_POST['ideditorial']);
-        $nombre = isset($_POST['Nombre']);
+        $nombre = isset($_POST['nombre_editorial']);
 
         if(isset($_POST['btnBuscar']))
         {
             $ideditorial = $_POST['txtId'];
             $existe = 0;
-            if($id == "")
+            if($ideditorial == "")
             {
                 echo "El Campo Id es Obligatorio";
             }
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where ideditorial = '$ideditorial'");
+                $res = mysqli_query($conexion,"select * from editorial where ideditorial = '$ideditorial'");
                 while($consulta = mysqli_fetch_array($res))
                 {
                     $ideditorial = $consulta['ideditorial'];
-                    $nombre = $consulta['Nombre'];
+                    $nombre = $consulta['nombre_editorial'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -65,11 +65,11 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $ideditorial = $consulta['id'];
+                        $ideditorial = $consulta['ideditorial'];
                     }
                     if($ideditorial != "")
                     {
-                        $query = "update editorial set nombre = '$nombre' where ideditorial = '$ideditorial'";
+                        $query = "update editorial set nombre_editorial = '$nombre' where ideditorial = '$ideditorial'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -82,14 +82,14 @@
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from editorial");
+                            $res = mysqli_query($conexion,"select max(ideditorial) from editorial");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO editorial(id,Titulo,Autor) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO editorial(ideditorial,nombre_editorial) values('$maxid','$nombre')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -105,11 +105,11 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $ideditorial = $consulta['id'];
+                        $ideditorial = $consulta['ideditorial'];
                     }
                     if($ideditorial != "")
                     {
-                        $query = "update editorial set nombre = '$nombre' where ideditorial = '$ideditorial'";
+                        $query = "update editorial set nombre_editorial = '$nombre' where ideditorial = '$ideditorial'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }

@@ -68,7 +68,7 @@
                     $link = $_POST['txtlink'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from tienda_tienda where id = '$id'");
+                    $res = mysqli_query($conexion, "select * from tiendaonline where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {

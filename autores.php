@@ -2,24 +2,24 @@
     <?php
         include("abrirconexion.php");
         $idautor = isset($_POST['idautor']);
-        $nombre = isset($_POST['Nombre']);
+        $nombre = isset($_POST['nombre_autor']);
 
         if(isset($_POST['btnBuscar']))
         {
             $idautor = $_POST['txtId'];
             $existe = 0;
-            if($id == "")
+            if($idautor == " ")
             {
                 echo "El Campo Id es Obligatorio";
             }
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where idautor = '$idautor'");
+                $res = mysqli_query($conexion,"select * from autores where idautor = '$idautor'");
                 while($consulta = mysqli_fetch_array($res))
                 {
                     $idautor = $consulta['idautor'];
-                    $nombre = $consulta['Nombre'];
+                    $nombre = $consulta['nombre_autor'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -53,8 +53,8 @@
             </form>
             <?php
                 include("abrirconexion.php");
-                    $idautor = "";
-                    $nombre = "";
+                    $idautor = " ";
+                    $nombre = " ";
                 if(isset($_POST['btnGuardar']))
                 {
                     $idautor = $_POST['txtId'];
@@ -65,31 +65,31 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idautor = $consulta['id'];
+                        $idautor = $consulta['idautor'];
                     }
-                    if($idautor != "")
+                    if($idautor != " ")
                     {
-                        $query = "update autores set nombre = '$nombre' where idautor = '$idautor'";
+                        $query = "update autores set nombre_autor = '$nombre' where idautor = '$idautor'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
                     else
                     {
                     
-                        if($idautor == "" || $nombre == "")
+                        if($idautor == " " || $nombre == " ")
                         {
                             echo "Los Campos Son Obligatorios";
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from autores");
+                            $res = mysqli_query($conexion,"select max(idautor) from autores");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO autores(id,Titulo,Autor) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO autores(idautor,nombre_autor) values('$maxid','$nombre')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -105,11 +105,11 @@
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idautor = $consulta['id'];
+                        $idautor = $consulta['idautor'];
                     }
                     if($idautor != "")
                     {
-                        $query = "update autores set nombre = '$nombre' where idautor = '$idautor'";
+                        $query = "update autores set nombre_autor = '$nombre' where idautor = '$idautor'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
