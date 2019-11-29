@@ -1,13 +1,13 @@
 <html>
     <?php
         include("abrirconexion.php");
-        $idtienda = isset($_POST['idtienda']);
+        $id = isset($_POST['Id']);
         $nombre = isset($_POST['Nombre']);
         $direccion = isset($_POST['Direccion']);
 
         if(isset($_POST['btnBuscar']))
         {
-            $idtienda = $_POST['txtId'];
+            $id = $_POST['txtId'];
             $existe = 0;
             if($id == "")
             {
@@ -16,10 +16,10 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where idtienda = '$idtienda'");
+                $res = mysqli_query($conexion,"select * from v_busqueda_libros where id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {
-                    $idtienda = $consulta['idtienda'];
+                    $id = $consulta['id'];
                     $nombre = $consulta['Nombre'];
                     $direccion = $consulta['Direccion'];
                     $existe++;
@@ -131,7 +131,7 @@
                         echo "El Campo es Obligatorio";
                     else
                     {
-                        $res = mysqli_query($conexion,"select * from tienda where idtienda = '$idtienda'");
+                        $res = mysqli_query($conexion,"select * from tienda where id = '$id'");
                         while($consulta = mysqli_fetch_array($res))
                         {
                             $existe++;

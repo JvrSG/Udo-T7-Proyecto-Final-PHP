@@ -41,6 +41,6 @@
             header("location: menu.php");
         }
         else
-            echo "Usuario O Contraseña Invalidos";
+            echo "Usuario o Contraseña Invalidos";
     }
 ?>

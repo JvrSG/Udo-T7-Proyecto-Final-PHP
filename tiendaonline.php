@@ -16,11 +16,11 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * tienda_online where id = '$id'");
+                $res = mysqli_query($conexion,"select * from tienda_online where id = '$id'");
                 while($consulta = mysqli_fetch_array($res)) //
                 {
                     $id = $consulta['id'];
-                    $nombre = $consulta['Nombre'];
+                    $nombre = $consulta['nombre'];
                     $link = $consulta['link']; 
                     $existe++;
                 }
@@ -40,13 +40,13 @@
             <form method="POST" action="tiendaonline.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $id ?>">
+                <input type="text" name="txtId" id="Id" value ="<?php echo $id; ?>">
                 <br>
                 <label for = "txtTienda">Nombre: </label>
-                <input type="text" name="txtTienda" id="tiendaonline" value = "<?php echo $nombre ?>">
+                <input type="text" name="txtTienda" id="tiendaonline" value ="<?php echo $nombre; ?>">
                 <br>
                 <label for = "txtlink">Link: </label>
-                <input type="text" name="txtlink" id="link" value = "<?php echo $link ?>">
+                <input type="text" name="txtlink" id="link" value ="<?php echo $link; ?>">
                 <br>
                 </center>
                 <center>
@@ -68,7 +68,9 @@
                     $link = $_POST['txtlink'];
 
                     //Actualizar
+                    // $res = mysqli_query($conexion, "select * from tienda_online where id = '$id'");
                     $res = mysqli_query($conexion, "select * from tienda_online where id = '$id'");
+
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
@@ -76,28 +78,27 @@
                     }
                     if($id != "")
                     {
-                        $query = "UPDATE 'tienda_online' SET nombre = '$nombre', link = '$link' where id = '$id'";
+                        $query = "UPDATE tienda_online SET nombre = '$nombre', link = '$link' where id = '$id'";
                         // UPDATE `tienda_online` SET `id`=[value-1],`nombre`=[value-2],`link`=[value-3] WHERE 1
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
                     else
                     {
-                    
                         if($nombre == "" || $link == "")
                         {
                             echo "Los Campos Son Obligatorios";
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from tienda_online");
+                            $res = mysqli_query($conexion,"select MAX(id) from tienda_online");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) values($maxid,'$nombre','$link')");
+                            mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) VALUES('$maxid','$nombre','$link')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -118,7 +119,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update tienda_tienda set nombre = '$nombre', link = '$link' where id = '$id'";
+                        $query = "UPDATE tienda_online SET nombre = '$nombre', link = '$link' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -150,7 +151,7 @@
                         }
                     }
                 }
-                include("cerrarconexion.php");
+                include("cerrarconexion.php")
             ?>
     </body>
 </html>
