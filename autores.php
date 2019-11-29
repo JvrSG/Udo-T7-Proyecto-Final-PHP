@@ -53,14 +53,14 @@
             </form>
             <?php
                 include("abrirconexion.php");
-                    $idautor = " ";
-                    $nombre = " ";
+                    $idautor = "";
+                    $nombre = "";
                 if(isset($_POST['btnGuardar']))
                 {
                     $idautor = $_POST['txtId'];
                     $nombre = $_POST['txtAutor'];
 
-                    if($idautor == "" || $nombre == "")
+                    if($nombre == "")
                     {
                         echo "Los Campos Son Obligatorios";
                     }
@@ -75,7 +75,7 @@
                         //Insertar Datos A La BD
                         mysqli_query($conexion,"INSERT INTO autores(idautor,nombre_autor) values('$maxid','$nombre')");
                         echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
-                    }
+                    } 
                 }
 
                 if(isset($_POST['btnActualizar']))
@@ -124,7 +124,7 @@
                         }
                     }
                 }
-                include("cerrarconexion.php");
+                include("cerrarconexion.php")
             ?>
     </body>
 </html>

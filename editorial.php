@@ -60,7 +60,7 @@
                     $ideditorial = $_POST['txtId'];
                     $nombre = $_POST['txtEditorial'];
 
-                    if($ideditorial == "" || $nombre == "")
+                    if($nombre == "")
                     {
                         echo "Los Campos Son Obligatorios";
                     }

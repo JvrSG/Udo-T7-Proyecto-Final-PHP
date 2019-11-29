@@ -50,122 +50,26 @@
             <form method="POST" action="libros.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $id ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id; ?>">
                 <br>
                 <label for = "txtTitulo">Titulo: </label>
-                <input type="text" name="txtTitulo" id="Titulo" value = "<?php echo $titulo ?>">
+                <input type="text" name="txtTitulo" id="Titulo" value = "<?php echo $titulo; ?>">
                 <br>
                 <label for = "txtVol">Volumen: </label>
-                <input type="text" name="txtVol" id="Volumen" value = "<?php echo $volumen ?>">
+                <input type="text" name="txtVol" id="Volumen" value = "<?php echo $volumen; ?>">
                 <br>
                 <!--  -->
-                <label for = "ddlAutor">Autor: </label>
-                <select type="select" name="ddlAutor" id="Autor">
-                    <?php
-                        include("abrirconexion.php");
-                        if($autor != "")
-                        {
-                            $res = mysqli_query($conexion, "select * from autores where idautor = '$idautor'");
-                            if(mysqli_num_rows($res)>0)
-                            while($reg = mysqli_fetch_assoc($res))
-                            {
-                                echo '<option selected ="'.$reg['idautor'].'">';
-                                echo $reg['nombre_autor'];
-                                echo '</option>';
-                            }
-                        }
-                        $res = mysqli_query($conexion,"select idautor, nombre_autor from autores where idautor <> '$idautor'");
-                        if(mysqli_num_rows($res)>0)
-                        while ($reg = mysqli_fetch_assoc($res)) 
-                        {
-                            echo '<option selected = "'.$reg['idautor'].'">';
-                            echo $reg['nombre_autor'];
-                            echo '</option>';
-                        }
-                        include("cerrarconexion.php");
-                    ?>
-                </select>
+                <label for = "txtAutor">Autor: </label>
+                <input type="text" name="txtAutor" id="Autor" value="<?php echo $autor; ?>">
                 <br>
-                <label for = "ddlEditorial">Editorial: </label>
-                <select type="select" name="ddlEditorial" id="Editorial">
-                    <?php
-                        include("abrirconexion.php");
-                        if($editoriales != "")
-                        {
-                            $res = mysqli_query($conexion, "select * from editorial where idediitorial = '$ideditorial'");
-                            if(mysqli_num_rows($res)>0)
-                            while($reg = mysqli_fetch_assoc($res))
-                            {
-                                echo '<option selected ="'.$reg['ideditorial'].'">';
-                                echo $reg['nombre_editorial'];
-                                echo '</option>';
-                            }
-                        }
-                        $res = mysqli_query($conexion,"select ideditorial, nombre_editorial from editorial where ideditorial <> '$ideditorial'");
-                        if(mysqli_num_rows($res)>0)
-                        while ($reg = mysqli_fetch_assoc($res)) 
-                        {
-                            echo '<option selected = "'.$reg['ideditorial'].'">';
-                            echo $reg['nombre_editorial'];
-                            echo '</option>';
-                        }
-                        include("cerrarconexion.php");
-                    ?>
-                </select>
+                <label for = "txtEditorial">Editorial: </label>
+                <input type="text" name="txtEditorial" id="Editorial" value="<?php echo $editoriales; ?>">
                 <br>
-                <label for = "ddlTienda">Tienda: </label>
-                <select type="select" name="ddlTienda" id="Tienda">
-                    <?php
-                        include("abrirconexion.php");
-                        if($tiendas != "")
-                        {
-                            $res = mysqli_query($conexion, "select * from tienda where idtienda = '$idtienda'");
-                            if(mysqli_num_rows($res)>0)
-                            while($reg = mysqli_fetch_assoc($res))
-                            {
-                                echo '<option selected ="'.$reg['idtienda'].'">';
-                                echo $reg['nombre_tienda'];
-                                echo '</option>';
-                            }
-                        }
-                        $res = mysqli_query($conexion,"select idtienda, nombre_tienda from tienda where idtienda <> '$idtienda'");
-                        if(mysqli_num_rows($res)>0)
-                        while ($reg = mysqli_fetch_assoc($res)) 
-                        {
-                            echo '<option selected = "'.$reg['idtienda'].'">';
-                            echo $reg['nombre_tienda'];
-                            echo '</option>';
-                        }
-                        include("cerrarconexion.php");
-                    ?>
-                </select>
+                <label for = "txtTienda">Tienda: </label>
+                <input type="text" name="txtTienda" id="Tienda" value="<?php echo $tiendas; ?>">
                 <br>
                 <label for = "txtTiendaOnline">Tienda Online: </label>
-                <select type="select" name="ddlTiendaOnline" id="TiendaOnline">
-                    <?php
-                        include("abrirconexion.php");
-                        if($tiendas != "")
-                        {
-                            $res = mysqli_query($conexion, "select * from tiendaonline where idtonline = '$idtonline'");
-                            if(mysqli_num_rows($res)>0)
-                            while($reg = mysqli_fetch_assoc($res))
-                            {
-                                echo '<option selected ="'.$reg['idtonline'].'">';
-                                echo $reg['nombre_tonline'];
-                                echo '</option>';
-                            }
-                        }
-                        $res = mysqli_query($conexion,"select idtonline, nombre_tonline from tiendaonline where idtonline <> '$idtonline'");
-                        if(mysqli_num_rows($res)>0)
-                        while ($reg = mysqli_fetch_assoc($res)) 
-                        {
-                            echo '<option selected = "'.$reg['idtonline'].'">';
-                            echo $reg['nombre_tonline'];
-                            echo '</option>';
-                        }
-                        include("cerrarconexion.php");
-                    ?>
-                </select>
+                <input type="text" name="txtTiendaOnline" id="TiendaOnline" value="<?php echo $tiendasOnline; ?>">
                 <br>
                 <label for = "txtPrecio">Precio: </label>
                 <input type="text" name="txtPrecio" id="Precio" value = "<?php echo $precio ?>">
@@ -194,10 +98,10 @@
                     $id = $_POST['txtId'];
                     $titulo = $_POST['txtTitulo'];
                     $volumen = $_POST['txtVol'];
-                    $autor = $_POST['ddlAutor'];
-                    $editoriales = $_POST['ddlEditorial'];
-                    $tiendas = $_POST['ddlTienda'];
-                    $tiendasOnline = $_POST['ddlTiendaOnline'];
+                    $autor = $_POST['txtAutor'];
+                    $editoriales = $_POST['txtEditorial'];
+                    $tiendas = $_POST['txtTienda'];
+                    $tiendasOnline = $_POST['txtTiendaOnline'];
                     $precio = $_POST['txtPrecio'];
                     
                     if($titulo == "" || $volumen == "" || $autor == "" || $editoriales == "" || $tiendas == "" || $tiendasOnline == "" || $precio == "")
@@ -206,16 +110,17 @@
                     }
                     else
                     {
-                        $res = mysqli_query($conexion,"select max(id) from libros");
+                        $res = mysqli_query($conexion,"select MAX(id) from libros");
                         $consulta = mysqli_fetch_array($res);
                         $maxid = $consulta[0];
                         $maxid++;
                         if($maxid == "")
                             $maxid = 1;
-                            //Insertar Datos A La BD
-                        mysqli_query($conexion,"INSERT INTO libros(id,titulo,volumen,autor,editoriales,tiendas,tiendasonline,precio) values('$maxid','$titulo',$volumen,$autor,$editoriales,$tiendas,$tiendasOnline,$precio)");
+                        //Insertar Datos A La BD
+                        mysqli_query($conexion,"INSERT INTO libros(id,titulo,volumen,autor,editoriales,tiendas,tiendasonline,precio) 
+                        VALUES('$maxid','$titulo','$volumen','$autor','$editoriales','$tiendas','$tiendasOnline','$precio')");
                         echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
-                    }   // `id`, `titulo`, `volumen`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
+                    } 
                 }
 
                 if(isset($_POST['btnActualizar']))
@@ -223,14 +128,14 @@
                     $id = $_POST['txtId'];
                     $titulo = $_POST['txtTitulo'];
                     $volumen = $_POST['txtVol'];
-                    $autor = $_POST['ddlAutor'];
-                    $editoriales = $_POST['ddlEditorial'];
-                    $tiendas = $_POST['ddlTienda'];
-                    $tiendasOnline = $_POST['ddlTiendaOnline'];
+                    $autor = $_POST['txtAutor'];
+                    $editoriales = $_POST['txtEditorial'];
+                    $tiendas = $_POST['txtTienda'];
+                    $tiendasOnline = $_POST['txtTiendaOnline'];
                     $precio = $_POST['txtPrecio'];
                     
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from libros where id = '$id'");
+                    $res = mysqli_query($conexion, "SELECT * from libros where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
@@ -238,11 +143,11 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', volumen = '$volumen',autor = '$autor', editoriales = '$editoriales', tiendas = ''$tiendas, tiendasonline = '$tiendasOnline', precio = '$precio' where id = '$id'";
+                        $query = "UPDATE libros SET titulo = '$titulo', volumen = '$volumen',autor = '$autor', editoriales = '$editoriales', tiendas = '$tiendas', tiendasonline = '$tiendasOnline', precio = '$precio' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
-                }// `id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
+                }
 
                 if(isset($_POST['btnEliminar']))
                 {
@@ -270,7 +175,7 @@
                         }
                     }
                 }
-                include("cerrarconexion.php");
+                include("cerrarconexion.php")
             ?>
     </body>
 </html>

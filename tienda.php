@@ -9,7 +9,7 @@
         {
             $idtienda = $_POST['txtId'];
             $existe = 0;
-            if($id == "")
+            if($idtienda == "")
             {
                 echo "El Campo Id es Obligatorio";
             }
@@ -40,13 +40,13 @@
             <form method="POST" action="tienda.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $idtienda ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $idtienda; ?>">
                 <br>
                 <label for = "txtTienda">Nombre: </label>
-                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $nombre ?>">
+                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $nombre; ?>">
                 <br>
                 <label for = "txtdireccion">Direccion: </label>
-                <input type="text" name="txtdireccion" id="Direccion" value = "<?php echo $direccion ?>">
+                <input type="text" name="txtdireccion" id="Direccion" value = "<?php echo $direccion; ?>">
                 <br>
                 </center>
                 <center>
