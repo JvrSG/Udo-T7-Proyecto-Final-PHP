@@ -60,39 +60,22 @@
                     $ideditorial = $_POST['txtId'];
                     $nombre = $_POST['txtEditorial'];
 
-                    //Actualizar
-                    $res = mysqli_query($conexion, "select * from editorial where ideditorial = '$ideditorial'");
-                    
-                    while($consulta = mysqli_fetch_array($res))
+                    if($ideditorial == "" || $nombre == "")
                     {
-                        $ideditorial = $consulta['ideditorial'];
-                    }
-                    if($ideditorial != "")
-                    {
-                        $query = "update editorial set nombre_editorial = '$nombre' where ideditorial = '$ideditorial'";
-                        mysqli_query($conexion,$query);
-                        echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
+                        echo "Los Campos Son Obligatorios";
                     }
                     else
                     {
-                    
-                        if($ideditorial == "" || $nombre == "")
-                        {
-                            echo "Los Campos Son Obligatorios";
-                        }
-                        else
-                        {
-                            $res = mysqli_query($conexion,"select max(ideditorial) from editorial");
-                            $consulta = mysqli_fetch_array($res);
-                            $maxid = $consulta[0];
-                            $maxid++;
-                            if($maxid == "")
-                                $maxid = 1;
-                            //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO editorial(ideditorial,nombre_editorial) values('$maxid','$nombre')");
-                            echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
-                        } 
-                    }  
+                        $res = mysqli_query($conexion,"select max(ideditorial) from editorial");
+                        $consulta = mysqli_fetch_array($res);
+                        $maxid = $consulta[0];
+                        $maxid++;
+                        if($maxid == "")
+                            $maxid = 1;
+                        //Insertar Datos A La BD
+                        mysqli_query($conexion,"INSERT INTO editorial(ideditorial,nombre_editorial) values('$maxid','$nombre')");
+                        echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
+                    }
                 }
 
                 if(isset($_POST['btnActualizar']))

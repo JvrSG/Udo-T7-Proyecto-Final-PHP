@@ -91,25 +91,25 @@ create view v_busqueda_libros
 AS
 select l.Id,
     l.titulo,
-    l.vol
-    l.autores,
-    l.editorial,
-    l.tienda,
-    l.tienda_online,
+    l.volumen,
+    l.autor,
+    a.nombre_autor,
+    l.editoriales,
+    e.nombre_editorial,
+    l.tiendas,
+    t.nombre_tienda,
+    l.tiendasonline,
+    o.nombre_tiendaonline,
     l.precio
         from libros l 
             inner join autores a 
-            on a.id = l.autores
+            on a.idautor = l.autor
             inner join editorial e
-            on e.id = l.editorial
+            on e.ideditorial = l.editoriales
             inner join tienda t 
-            on t.id = l.tienda
-            inner join tienda_online o
-            on o.id = l.tienda_online;
-
-
-
-
+            on t.idtienda = l.tiendas
+            inner join tiendaonline o
+            on o.idtonline = l.tiendasonline;
 
 -- MISCELANEO
 

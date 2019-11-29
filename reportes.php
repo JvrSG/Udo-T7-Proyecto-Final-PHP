@@ -24,10 +24,10 @@
         echo "<td>" . $columna['Id'] . "</td>";
         echo "<td>" . $columna['titulo'] . "</td>";
         echo "<td>" . $columna['volumen'] . "</td>";
-        echo "<td>" . $columna['autor'] . "</td>";
-        echo "<td>" . $columna['editoriales'] . "</td>";
-        echo "<td>" . $columna['tiendas'] . "</td>";
-        echo "<td>" . $columna['tiendasonline'] . "</td>";
+        echo "<td>" . $columna['nombre_autor'] . "</td>";
+        echo "<td>" . $columna['nombre_editorial'] . "</td>";
+        echo "<td>" . $columna['nombre_tienda'] . "</td>";
+        echo "<td>" . $columna['nombre_tonline'] . "</td>";
         echo "<td>" . $columna['precio'] . "</td>";
         echo "</tr>";
     }
@@ -52,7 +52,7 @@
     {
         echo "<tr>";
         echo "<td>" . $columna['idautor'] . "</td>";
-        echo "<td>" . $columna['nombre'] . "</td>";
+        echo "<td>" . $columna['nombre_autor'] . "</td>";
         echo "</tr>";
     }
     
@@ -76,7 +76,7 @@
     {
         echo "<tr>";
         echo "<td>" . $columna['ideditorial'] . "</td>";
-        echo "<td>" . $columna['nombre'] . "</td>";
+        echo "<td>" . $columna['nombre_editorial'] . "</td>";
         echo "</tr>";
     }
     

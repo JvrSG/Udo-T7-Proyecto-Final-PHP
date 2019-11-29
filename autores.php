@@ -60,39 +60,22 @@
                     $idautor = $_POST['txtId'];
                     $nombre = $_POST['txtAutor'];
 
-                    //Actualizar
-                    $res = mysqli_query($conexion, "select * from autores where idautor = '$idautor'");
-                    
-                    while($consulta = mysqli_fetch_array($res))
+                    if($idautor == "" || $nombre == "")
                     {
-                        $idautor = $consulta['idautor'];
-                    }
-                    if($idautor != " ")
-                    {
-                        $query = "update autores set nombre_autor = '$nombre' where idautor = '$idautor'";
-                        mysqli_query($conexion,$query);
-                        echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
+                        echo "Los Campos Son Obligatorios";
                     }
                     else
                     {
-                    
-                        if($idautor == " " || $nombre == " ")
-                        {
-                            echo "Los Campos Son Obligatorios";
-                        }
-                        else
-                        {
-                            $res = mysqli_query($conexion,"select max(idautor) from autores");
-                            $consulta = mysqli_fetch_array($res);
-                            $maxid = $consulta[0];
-                            $maxid++;
-                            if($maxid == "")
-                                $maxid = 1;
-                            //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO autores(idautor,nombre_autor) values('$maxid','$nombre')");
-                            echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
-                        } 
-                    }  
+                        $res = mysqli_query($conexion,"select max(idautor) from autores");
+                        $consulta = mysqli_fetch_array($res);
+                        $maxid = $consulta[0];
+                        $maxid++;
+                        if($maxid == "")
+                            $maxid = 1;
+                        //Insertar Datos A La BD
+                        mysqli_query($conexion,"INSERT INTO autores(idautor,nombre_autor) values('$maxid','$nombre')");
+                        echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
+                    }
                 }
 
                 if(isset($_POST['btnActualizar']))

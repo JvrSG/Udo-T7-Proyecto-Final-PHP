@@ -67,39 +67,22 @@
                     $nombre = $_POST['txtTienda'];
                     $link = $_POST['txtlink'];
 
-                    //Actualizar
-                    $res = mysqli_query($conexion, "select * from tiendaonline where id = '$id'");
-                    
-                    while($consulta = mysqli_fetch_array($res))
+                   if($nombre == "" || $link == "")
                     {
-                        $id = $consulta['idtonline'];
-                    }
-                    if($id != "")
-                    {
-                        $query = "update tienda_online set nombre = '$nombre', link = '$link' where id = '$id'";
-                        mysqli_query($conexion,$query);
-                        echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
+                        echo "Los Campos Son Obligatorios";
                     }
                     else
                     {
-                    
-                        if($nombre == "" || $link == "")
-                        {
-                            echo "Los Campos Son Obligatorios";
-                        }
-                        else
-                        {
-                            $res = mysqli_query($conexion,"select max(id) from tienda_online");
-                            $consulta = mysqli_fetch_array($res);
-                            $maxid = $consulta[0];
-                            $maxid++;
-                            if($maxid == "")
-                                $maxid = 1;
-                            //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) values('$maxid','$nombre',$link)");
-                            echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
-                        } 
-                    }  
+                        $res = mysqli_query($conexion,"select max(id) from tienda_online");
+                        $consulta = mysqli_fetch_array($res);
+                        $maxid = $consulta[0];
+                        $maxid++;
+                        if($maxid == "")
+                            $maxid = 1;
+                        //Insertar Datos A La BD
+                        mysqli_query($conexion,"INSERT INTO tienda_online(id,nombre,link) values('$maxid','$nombre',$link)");
+                        echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
+                    }
                 }
 
                 if(isset($_POST['btnActualizar']))
