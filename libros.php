@@ -50,26 +50,26 @@
             <form method="POST" action="libros.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $id ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id; ?>">
                 <br>
                 <label for = "txtTitulo">Titulo: </label>
-                <input type="text" name="txtTitulo" id="titulo" value = "<?php echo $titulo ?>">
+                <input type="text" name="txtTitulo" id="titulo" value = "<?php echo $titulo; ?>">
                 <br>
                 <label for = "txtVol">Volumen: </label>
-                <input type="text" name="txtVol" id="vol" value = "<?php echo $vol ?>">
+                <input type="text" name="txtVol" id="vol" value = "<?php echo $vol; ?>">
                 <br>
                 <!--  -->
                 <label for = "txtAutores">Autores: </label>
-                <input type="text" name="txtAutores" id="autores" value = "<?php echo $autores ?>">
+                <input type="text" name="txtAutores" id="autores" value = "<?php echo $autores; ?>">
                 <br>
                 <label for = "txtEditorial">Editorial: </label>
-                <input type="text" name="txtEditorial" id="editorial" value = "<?php echo $editorial ?>">
+                <input type="text" name="txtEditorial" id="editorial" value = "<?php echo $editorial; ?>">
                 <br>
                 <label for = "txtTienda">Tienda: </label>
-                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $tienda ?>">
+                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $tienda; ?>">
                 <br>
                 <label for = "txtTiendaOnline">Tienda Online: </label>
-                <input type="text" name="txtTiendaOnline" id="tiendaOnline" value = "<?php echo $tiendaOnline ?>">
+                <input type="text" name="txtTiendaOnline" id="tiendaOnline" value = "<?php echo $tiendaOnline; ?>">
                 <br>
                 <label for = "txtPrecio">Precio: </label>
                 <input type="text" name="txtPrecio" id="precio" value = "<?php echo $precio ?>">
@@ -113,7 +113,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', vol = '$vol', autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio', where id = '$id'";
+                        $query = "UPDATE libros SET titulo = '$titulo', vol = '$vol', autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio', where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -126,14 +126,14 @@
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from libros");
+                            $res = mysqli_query($conexion,"select MAX(id) from libros");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,vol,autores,editorial,tienda,tienda_online,precio) values('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
+                            mysqli_query($conexion,"INSERT INTO libros(id,titulo,vol,autores,editorial,tienda,tienda_online,precio) VALUES('$maxid','$titulo',$vol,$autores,$editorial,$tienda,$tiendaOnline,$precio)");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  // `id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
@@ -159,7 +159,7 @@
                     }
                     if($id != "")
                     {
-                        $query = "update libros set titulo = '$titulo', vol = '$vol',autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio' where id = '$id'";
+                        $query = "UPDATE libros SET titulo = '$titulo', vol = '$vol',autores = '$autores', editorial = '$editorial', tienda = '$tienda', tienda_online = '$tiendaOnline', precio = '$precio' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }

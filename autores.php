@@ -1,12 +1,12 @@
 <html>
     <?php
         include("abrirconexion.php");
-        $idautor = isset($_POST['idautor']);
+        $id = isset($_POST['id']);
         $nombre = isset($_POST['Nombre']);
 
         if(isset($_POST['btnBuscar']))
         {
-            $idautor = $_POST['txtId'];
+            $id = $_POST['txtId'];
             $existe = 0;
             if($id == "")
             {
@@ -15,10 +15,10 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where idautor = '$idautor'");
+                $res = mysqli_query($conexion,"select * from v_busqueda_libros where id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {
-                    $idautor = $consulta['idautor'];
+                    $id = $consulta['id'];
                     $nombre = $consulta['Nombre'];
                     $existe++;
                 }
@@ -38,7 +38,7 @@
             <form method="POST" action="autores.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $idautor ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id ?>">
                 <br>
                 <label for = "txtAutor">Nombre: </label>
                 <input type="text" name="txtAutor" id="Autor" value = "<?php echo $nombre ?>">
@@ -53,43 +53,43 @@
             </form>
             <?php
                 include("abrirconexion.php");
-                    $idautor = "";
+                    $id = "";
                     $nombre = "";
                 if(isset($_POST['btnGuardar']))
                 {
-                    $idautor = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtAutor'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from autores where idautor = '$idautor'");
+                    $res = mysqli_query($conexion, "select * from autores where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idautor = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($idautor != "")
+                    if($id != "")
                     {
-                        $query = "update autores set nombre = '$nombre' where idautor = '$idautor'";
+                        $query = "update autores set nombre = '$nombre' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
                     else
                     {
                     
-                        if($idautor == "" || $nombre == "")
+                        if($id == "" || $nombre == "")
                         {
                             echo "Los Campos Son Obligatorios";
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from autores");
+                            $res = mysqli_query($conexion,"select MAX(id) from autores");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO autores(id,Titulo,Autor) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO autores(id,nombre) values('$maxid','$nombre')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -97,19 +97,19 @@
 
                 if(isset($_POST['btnActualizar']))
                 {
-                    $idautor = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtAutor'];
                     
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from autores where idautor = '$idautor'");
+                    $res = mysqli_query($conexion, "select * from autores where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idautor = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($idautor != "")
+                    if($id != "")
                     {
-                        $query = "update autores set nombre = '$nombre' where idautor = '$idautor'";
+                        $query = "UPDATE autores SET nombre = '$nombre' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -117,13 +117,13 @@
 
                 if(isset($_POST['btnEliminar']))
                 {
-                    $idautor = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $existe = 0;
-                    if($idautor == 0)
+                    if($id == 0)
                         echo "El Campo es Obligatorio";
                     else
                     {
-                        $res = mysqli_query($conexion,"select * from autores where idautor = '$idautor'");
+                        $res = mysqli_query($conexion,"select * from autores where id = '$id'");
                         while($consulta = mysqli_fetch_array($res))
                         {
                             $existe++;
@@ -135,7 +135,7 @@
                         else
                         {
                             //Eliminar
-                            $query = "delete from autores where idautor = '$idautor'";
+                            $query = "delete from autores where id = '$id'";
                             mysqli_query($conexion,$query);
                             echo "<script type =\"text/javascript\"> alert ('REGISTRO ELIMINADO.'); </script>";
                         }
