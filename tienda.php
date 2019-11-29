@@ -1,9 +1,9 @@
 <html>
     <?php
         include("abrirconexion.php");
-        $id = isset($_POST['Id']);
-        $nombre = isset($_POST['Nombre']);
-        $direccion = isset($_POST['Direccion']);
+        $id = isset($_POST['id']);
+        $nombre = isset($_POST['nombre']);
+        $direccion = isset($_POST['direccion']);
 
         if(isset($_POST['btnBuscar']))
         {
@@ -16,12 +16,12 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from v_busqueda_libros where id = '$id'");
+                $res = mysqli_query($conexion,"select * from tienda where id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {
                     $id = $consulta['id'];
-                    $nombre = $consulta['Nombre'];
-                    $direccion = $consulta['Direccion'];
+                    $nombre = $consulta['nombre'];
+                    $direccion = $consulta['direccion'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -40,13 +40,13 @@
             <form method="POST" action="tienda.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $idtienda ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id; ?>">
                 <br>
                 <label for = "txtTienda">Nombre: </label>
-                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $nombre ?>">
+                <input type="text" name="txtTienda" id="tienda" value = "<?php echo $nombre; ?>">
                 <br>
                 <label for = "txtdireccion">Direccion: </label>
-                <input type="text" name="txtdireccion" id="Direccion" value = "<?php echo $direccion ?>">
+                <input type="text" name="txtdireccion" id="Direccion" value = "<?php echo $direccion; ?>">
                 <br>
                 </center>
                 <center>
@@ -58,25 +58,25 @@
             </form>
             <?php
                 include("abrirconexion.php");
-                    $idtienda = "";
+                    $id = "";
                     $nombre = "";
                     $direccion = "";
                 if(isset($_POST['btnGuardar']))
                 {
-                    $idtienda = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtTienda'];
                     $direccion = $_POST['txtdireccion'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from tienda where idtienda = '$idtienda'");
+                    $res = mysqli_query($conexion, "select * from tienda where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idtienda = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($idtienda != "")
+                    if($id != "")
                     {
-                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
+                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -89,14 +89,14 @@
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from tienda");
+                            $res = mysqli_query($conexion,"select MAX(id) from tienda");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO tienda(idtienda,nombre,direccion) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO tienda(id,nombre,direccion) values('$maxid','$nombre','$direccion')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -104,20 +104,20 @@
 
                 if(isset($_POST['btnActualizar']))
                 {
-                    $idtienda = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtTienda'];
                     $direccion = $_POST['txtdireccion'];
                     
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from tienda where idtienda = '$idtienda'");
+                    $res = mysqli_query($conexion, "select * from tienda where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $idtienda = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($idtienda != "")
+                    if($id != "")
                     {
-                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where idtienda = '$idtienda'";
+                        $query = "update tienda set nombre = '$nombre', direccion = '$direccion' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -125,9 +125,9 @@
 
                 if(isset($_POST['btnEliminar']))
                 {
-                    $idtienda = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $existe = 0;
-                    if($idtienda == 0)
+                    if($id == 0)
                         echo "El Campo es Obligatorio";
                     else
                     {
@@ -143,7 +143,7 @@
                         else
                         {
                             //Eliminar
-                            $query = "delete from tienda where idtienda = '$idtienda'";
+                            $query = "delete from tienda where id = '$id'";
                             mysqli_query($conexion,$query);
                             echo "<script type =\"text/javascript\"> alert ('REGISTRO ELIMINADO.'); </script>";
                         }

@@ -2,7 +2,7 @@
     <?php
         include("abrirconexion.php");
         $id = isset($_POST['id']);
-        $nombre = isset($_POST['Nombre']);
+        $nombre = isset($_POST['nombre']);
 
         if(isset($_POST['btnBuscar']))
         {
@@ -15,11 +15,11 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from v_busqueda_libros where id = '$id'");
+                $res = mysqli_query($conexion,"select * from autores where id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {
                     $id = $consulta['id'];
-                    $nombre = $consulta['Nombre'];
+                    $nombre = $consulta['nombre'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -38,10 +38,10 @@
             <form method="POST" action="autores.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $id ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id; ?>">
                 <br>
                 <label for = "txtAutor">Nombre: </label>
-                <input type="text" name="txtAutor" id="Autor" value = "<?php echo $nombre ?>">
+                <input type="text" name="txtAutor" id="Autor" value = "<?php echo $nombre; ?>">
                 <br>
                 </center>
                 <center>
@@ -76,7 +76,7 @@
                     else
                     {
                     
-                        if($id == "" || $nombre == "")
+                        if($nombre == "")
                         {
                             echo "Los Campos Son Obligatorios";
                         }

@@ -1,12 +1,12 @@
 <html>
     <?php
         include("abrirconexion.php");
-        $ideditorial = isset($_POST['ideditorial']);
-        $nombre = isset($_POST['Nombre']);
+        $id = isset($_POST['id']);
+        $nombre = isset($_POST['nombre']);
 
         if(isset($_POST['btnBuscar']))
         {
-            $ideditorial = $_POST['txtId'];
+            $id = $_POST['txtId'];
             $existe = 0;
             if($id == "")
             {
@@ -15,11 +15,11 @@
             else
             {
                 //Buscar
-                $res = mysqli_query($conexion,"select * from vbusquedalibros where ideditorial = '$ideditorial'");
+                $res = mysqli_query($conexion,"select * from editorial where id = '$id'");
                 while($consulta = mysqli_fetch_array($res))
                 {
-                    $ideditorial = $consulta['ideditorial'];
-                    $nombre = $consulta['Nombre'];
+                    $id = $consulta['id'];
+                    $nombre = $consulta['nombre'];
                     $existe++;
                 }
                 if ($existe == 0) 
@@ -38,10 +38,10 @@
             <form method="POST" action="editorial.php">
                 <center>
                 <label for = "txtId">ID: </label>
-                <input type="text" name="txtId" id="Id" value = "<?php echo $ideditorial ?>">
+                <input type="text" name="txtId" id="Id" value = "<?php echo $id; ?>">
                 <br>
                 <label for = "txtEditorial">Nombre: </label>
-                <input type="text" name="txtEditorial" id="Editorial" value = "<?php echo $nombre ?>">
+                <input type="text" name="txtEditorial" id="Editorial" value = "<?php echo $nombre; ?>">
                 <br>
                 </center>
                 <center>
@@ -53,43 +53,43 @@
             </form>
             <?php
                 include("abrirconexion.php");
-                    $ideditorial = "";
+                    $id = "";
                     $nombre = "";
                 if(isset($_POST['btnGuardar']))
                 {
-                    $ideditorial = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtEditorial'];
 
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from editorial where ideditorial = '$ideditorial'");
+                    $res = mysqli_query($conexion, "select * from editorial where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $ideditorial = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($ideditorial != "")
+                    if($id != "")
                     {
-                        $query = "update editorial set nombre = '$nombre' where ideditorial = '$ideditorial'";
+                        $query = "UPDATE editorial SET nombre = '$nombre' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
                     else
                     {
                     
-                        if($ideditorial == "" || $nombre == "")
+                        if($nombre == "")
                         {
                             echo "Los Campos Son Obligatorios";
                         }
                         else
                         {
-                            $res = mysqli_query($conexion,"select max(id) from editorial");
+                            $res = mysqli_query($conexion,"select MAX(id) from editorial");
                             $consulta = mysqli_fetch_array($res);
                             $maxid = $consulta[0];
                             $maxid++;
                             if($maxid == "")
                                 $maxid = 1;
                             //Insertar Datos A La BD
-                            mysqli_query($conexion,"INSERT INTO editorial(id,Titulo,Autor) values('$maxid','$nombre')");
+                            mysqli_query($conexion,"INSERT INTO editorial(id,nombre) values('$maxid','$nombre')");
                             echo "<script typle=\"text/javascript\"> alert ('REGISTRO GUARDADO.'); </script>";
                         } 
                     }  
@@ -97,19 +97,19 @@
 
                 if(isset($_POST['btnActualizar']))
                 {
-                    $ideditorial = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $nombre = $_POST['txtEditorial'];
                     
                     //Actualizar
-                    $res = mysqli_query($conexion, "select * from editorial where ideditorial = '$ideditorial'");
+                    $res = mysqli_query($conexion, "select * from editorial where id = '$id'");
                     
                     while($consulta = mysqli_fetch_array($res))
                     {
-                        $ideditorial = $consulta['id'];
+                        $id = $consulta['id'];
                     }
-                    if($ideditorial != "")
+                    if($id != "")
                     {
-                        $query = "update editorial set nombre = '$nombre' where ideditorial = '$ideditorial'";
+                        $query = "UPDATE editorial set nombre = '$nombre' where id = '$id'";
                         mysqli_query($conexion,$query);
                         echo "<script type =\"text/javascript\"> alert ('REGISTRO ACTUALIZADO.'); </script>";
                     }
@@ -117,13 +117,13 @@
 
                 if(isset($_POST['btnEliminar']))
                 {
-                    $ideditorial = $_POST['txtId'];
+                    $id = $_POST['txtId'];
                     $existe = 0;
-                    if($ideditorial == 0)
+                    if($id == 0)
                         echo "El Campo es Obligatorio";
                     else
                     {
-                        $res = mysqli_query($conexion,"select * from editorial where ideditorial = '$ideditorial'");
+                        $res = mysqli_query($conexion,"select * from editorial where id = '$id'");
                         while($consulta = mysqli_fetch_array($res))
                         {
                             $existe++;
@@ -135,7 +135,7 @@
                         else
                         {
                             //Eliminar
-                            $query = "delete from editorial where ideditorial = '$ideditorial'";
+                            $query = "delete from editorial where id = '$id'";
                             mysqli_query($conexion,$query);
                             echo "<script type =\"text/javascript\"> alert ('REGISTRO ELIMINADO.'); </script>";
                         }
