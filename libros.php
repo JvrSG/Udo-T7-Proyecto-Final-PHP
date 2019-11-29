@@ -165,7 +165,7 @@
                     }
                 }// `id`, `titulo`, `vol`, `autores`, `editorial`, `tienda`, `tienda_online`, `precio`
 
-                if(isset($_POST['btnEliminar']))
+                if(isset($_POST['btnEliminar'])) 
                 {
                     $id = $_POST['txtId'];
                     $existe = 0;
